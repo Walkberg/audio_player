@@ -8,16 +8,15 @@ import PlayArrow from "@material-ui/icons/PlayArrowRounded";
 import Pause from "@material-ui/icons/PauseRounded";
 import Avatar from "@material-ui/core/Avatar";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Typography from '@material-ui/core/Typography';
-import {fadeInUp} from "react-animations" 
-import styled, { keyframes } from 'styled-components';
-
-
+import Typography from "@material-ui/core/Typography";
+import { fadeInUp } from "react-animations";
+import styled, { keyframes } from "styled-components";
 
 //const Bounce =styled.div`animation: 2s ${keyframes`${fadeInUp}`} infinite`
 const BorderLinearProgress = withStyles({
   root: {
     height: 5,
+    width:"100%",
     borderRadius: 20,
     backgroundColor: "#fbfbfb"
   },
@@ -37,8 +36,8 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     // padding: theme.spacing(3)
-    zIndex:"501",
-    borderRadius:"15px",
+    zIndex: "501",
+    borderRadius: "15px",
     flexDirection: "row",
     display: "flex",
     padding: "10px",
@@ -51,27 +50,30 @@ const useStyles = makeStyles(theme => ({
     height: 125,
     zIndex: 500
   },
-  avatar:{
+  avatar: {
     top: -75,
     left: 0,
-    margin: 10,
+    margin: 10
   },
   rotation: {
-    animation: "App-logo-spin infinite 20s linear",
+    animation: "App-logo-spin infinite 20s linear"
   },
-  shadow:{
+  shadow: {
     boxShadow: "0px 5px 10px 5px rgb(0,0,0,0.2)"
   },
   button: {
     borderRadius: "15%"
   },
+  button1: {
+    borderRadius: "15%",
+    backgroundColor:"#1117"
+  },
   paper2: {
-    zIndex:"500",
-    position:"relative",
+    zIndex: "500",
+    position: "relative",
     display: "flex",
     width: "90%",
-    backgroundColor: "#fff7",
-
+    backgroundColor: "#fff7"
   },
   container: {
     justifyContent: "center",
@@ -89,20 +91,25 @@ export default function AudioPlayer() {
     <main className={classes.root}>
       <div className={classes.container}>
         <Paper className={classes.paper2}>
-          <div style={{ position: "relative", width: "150px"  }}></div>
+          <div style={{ position: "relative", width: "150px" }}></div>
           <div
             style={{
-              bottom:"-10px",
+              bottom: "-10px",
               display: "flex",
               flexDirection: "column",
               flexGrow: 1,
               padding: "15px",
-              flexShrink:1,
-              justifyContent:"flex-start"
+              flexShrink: 1,
+              justifyContent: "flex-start",
+              alignItems:"flex-start"
             }}
           >
-            <Typography variant="body2" gutterBottom>title</Typography>
-            <Typography  variant="body2" gutterBottom>artist</Typography>
+            <Typography variant="body2" gutterBottom>
+              title
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              artist
+            </Typography>
             <BorderLinearProgress
               variant="determinate"
               color="secondary"
@@ -111,22 +118,28 @@ export default function AudioPlayer() {
           </div>
         </Paper>
         <Paper elevation={15} className={classes.paper}>
-          <div style={{position:"relative", width: "150px" }}>
-            <Avatar  className={[classes.bigAvatar, classes.avatar, isPlaying && classes.shadow]}>
+          <div style={{ position: "relative", width: "150px" }}>
+            <Avatar
+              className={[
+                classes.bigAvatar,
+                classes.avatar,
+                isPlaying && classes.shadow
+              ]}
+            >
               <Avatar
                 src="http://www.idolesmag.com/images/photos2017/8232-slimane-pochette-album-solune-26-janvier-2018.jpg"
-                className={[classes.bigAvatar,  isPlaying && classes.rotation]}
+                className={[classes.bigAvatar, isPlaying && classes.rotation]}
               ></Avatar>
               <Avatar
                 style={{
                   display: "absolute",
                   backgroundColor: "#fff",
-                  height:30,
-                  width:30,
+                  height: 30,
+                  width: 30,
                   zIndex: 501
                 }}
               />
-              </Avatar>
+            </Avatar>
           </div>
           <IconButton aria-label="delete" className={classes.button}>
             <FastRewind fontSize="large" />
@@ -135,14 +148,14 @@ export default function AudioPlayer() {
             <IconButton
               onClick={() => setIsPlaying(false)}
               aria-label="delete"
-              className={classes.button}
+              className={classes.button1}
             >
-              <Pause style={{ fontSize: "50px" }} fontSize="large" />
+              <Pause style={{ fontSize: "50px", color:"#fff" }} fontSize="large" />
             </IconButton>
           ) : (
             <IconButton
               onClick={() => setIsPlaying(true)}
-              aria-label="delete"
+              aria-label="play"
               className={classes.button}
             >
               <PlayArrow style={{ fontSize: "50px" }} fontSize="large" />
