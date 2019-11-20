@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/styles";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
+    height: "100%"
   },
   paper: {
     // padding: theme.spacing(3)
@@ -39,49 +39,76 @@ const useStyles = makeStyles(theme => ({
   },
   bigAvatar: {
     position: "absolute",
-    top: 0,
+    top: -75,
     left: 0,
     margin: 10,
-    width: 150,
-    height: 150
+    width: 125,
+    height: 125,
+    zIndex: 500
   },
+  rotation: {
+    animation: "App-logo-spin infinite 20s linear"
+  },
+
   button: {
     borderRadius: "15%"
   },
-  paper2:{
-      width:"100%"
+  paper2: {
+    width: "90%",
+    backgroundColor:"#fff7"
   }
 }));
 
 export default function AudioPlayer() {
   const classes = useStyles();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <main className={classes.root}>
-      <Paper elevation={15} className={classes.paper}>
-        <div style={{ width: "150px" }}></div>
-        <IconButton aria-label="delete" className={classes.button}>
-          <FastRewind fontSize="large" />
-        </IconButton>
-        <IconButton aria-label="delete" className={classes.button}>
-          <Pause style={{ fontSize: "50px" }} fontSize="large" />
-        </IconButton>
-        <IconButton aria-label="delete" className={classes.button}>
-          <FastForward fontSize="large" />
-        </IconButton>
-        <Avatar className={classes.bigAvatar}>
-          <Avatar style={{ backgroundColor: "green" }} />
-        </Avatar>
-      </Paper>
-      <Paper className={classes.paper2}>
-        <h5>title</h5>
-        <h6>artist</h6>
-        <BorderLinearProgress
-          variant="determinate"
-          color="secondary"
-          value={5}
-        />
-      </Paper>
+      <div style ={{justifyContent:"center"}}>
+        <Paper className={classes.paper2}>
+          <h5>title</h5>
+          <h6>artist</h6>
+          <BorderLinearProgress
+            variant="determinate"
+            color="secondary"
+            value={5}
+          />
+        </Paper>
+        <Paper elevation={15} className={classes.paper}>
+          <div style={{ position: "relative", width: "150px" }}>
+            <Avatar
+              src="http://www.idolesmag.com/images/photos2017/8232-slimane-pochette-album-solune-26-janvier-2018.jpg"
+              className={[classes.bigAvatar, isPlaying && classes.rotation]}
+            >
+              <Avatar style={{ backgroundColor: "green", zIndex: 501 }} />
+            </Avatar>
+          </div>
+          <IconButton aria-label="delete" className={classes.button}>
+            <FastRewind fontSize="large" />
+          </IconButton>
+          {isPlaying ? (
+            <IconButton
+              onClick={() => setIsPlaying(false)}
+              aria-label="delete"
+              className={classes.button}
+            >
+              <Pause style={{ fontSize: "50px" }} fontSize="large" />
+            </IconButton>
+          ) : (
+            <IconButton
+              onClick={() => setIsPlaying(true)}
+              aria-label="delete"
+              className={classes.button}
+            >
+              <PlayArrow style={{ fontSize: "50px" }} fontSize="large" />
+            </IconButton>
+          )}
+          <IconButton aria-label="delete" className={classes.button}>
+            <FastForward fontSize="large" />
+          </IconButton>
+        </Paper>
+      </div>
     </main>
   );
 }
