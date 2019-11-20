@@ -62,11 +62,12 @@ const useStyles = makeStyles(theme => ({
     boxShadow: "0px 5px 10px 5px rgb(0,0,0,0.2)"
   },
   button: {
+    color:"#d9d7da",
     borderRadius: "15%"
   },
   button1: {
     borderRadius: "15%",
-    backgroundColor:"#1117"
+    backgroundColor:"#d9d7da"
   },
   paper2: {
     zIndex: "500",
